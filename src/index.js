@@ -6,53 +6,39 @@ document.getElementById("app").innerHTML = `
   for more info about Parcel.
 </div>
 `
-// naming
-// Consistancy Is King
-// Clear, searchable & obvious
+// Immutable vs Mutable
 
-const BASE_SALARY = 16000
-const SALARY_MULTIPLIER = 4
+// let name = "Scott"
+// name = name + " Tolinski"
+// console.log(name)
 
-const makePerson = ({ firstName, age, job, lastName }) => {
-  return {
-    name: firstName + " " + lastName,
-    age,
-    job,
-    salary: BASE_SALARY * SALARY_MULTIPLIER
-  }
+// const name = "Scott"
+// const fullName = name + " Tolinski"
+// console.log(fullName)
+
+// Pure Functions
+// Always return the same thing with the same input
+const addTwo = x => x + 2
+
+console.log(addTwo(2))
+console.log(addTwo(2))
+console.log(addTwo(2))
+
+// NOT PURE
+let multi = 3 // External State
+const addThree = x => x + multi
+console.log(addThree(2))
+multi = 4
+console.log(addThree(2))
+multi = 6
+console.log(addThree(2))
+
+// funtion mutate outside thing
+let mult = 2
+const addFour = x => {
+  mult += 2
+  return x + mult
 }
-
-// const tempName = {
-//   name: "Scott",
-//   lastName: "Tolinski",
-//   age: 32,
-//   job: "web dev"
-// }
-
-// arguments are things pass in to functions
-// more explicit and easy to read
-const dev = makePerson({
-  firstName: "Scott",
-  lastName: "Tolinski",
-  age: 32,
-  job: "web dev"
-})
-
-// NOT GOOD
-// const hireDev = ({ devInfo }) => {
-//   const hiredDevInfo = {
-//     hired: true,
-//     ...devInfo
-//   }
-//   return hiredDevInfo
-// }
-
-const hireDev = ({ dev }) => {
-  const hiredDev = {
-    hired: true,
-    ...dev
-  }
-  return hiredDev
-}
-
-console.log(hireDev({ dev }))
+console.log(addFour(2))
+console.log(addFour(2))
+console.log(addFour(2))
