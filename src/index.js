@@ -6,30 +6,25 @@ document.getElementById("app").innerHTML = `
   for more info about Parcel.
 </div>
 `
+const newArray = ["hi", "scott", "1", "2"]
+const [a, b, ...c] = newArray
+console.log(c)
 
-// Function Declaration
-// Hoisted
-// function sayHi() {
-//   return console.log("hi")
-// }
+const makePerson = (name, age, job) => {
+  return {
+    name,
+    age,
+    job
+  }
+}
 
-// Function Expression
-// Anonymous
-// Not hoisting
-// Passed around or used
-// const sayHi = function() {
-//   return console.log("Hi")
-// }
+const dev = makePerson("scott", 32, "web dev")
 
-// const sayHi = function sayHi() {
-//   return console.log("hi")
-// }
+const { name, ...rest } = dev
 
-// const sayHi = () => {
-//   return console.log("hi")
-// }
+// React
+// this.props.names
+// const { names } = this.props
+// ...this.props
 
-// const sayHi = () => (console.log("hi"))
-const sayHi = () => console.log("hi")
-
-sayHi()
+console.log(name, rest)
