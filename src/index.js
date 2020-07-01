@@ -6,19 +6,13 @@ document.getElementById("app").innerHTML = `
   for more info about Parcel.
 </div>
 `
-// naming
-// Consistancy Is King
-// Clear, searchable & obvious
-
-const BASE_SALARY = 16000
-const SALARY_MULTIPLIER = 4
-
+// parameters
+// order does not matter now
 const makePerson = ({ firstName, age, job, lastName }) => {
   return {
     name: firstName + " " + lastName,
     age,
-    job,
-    salary: BASE_SALARY * SALARY_MULTIPLIER
+    job
   }
 }
 
@@ -38,21 +32,4 @@ const dev = makePerson({
   job: "web dev"
 })
 
-// NOT GOOD
-// const hireDev = ({ devInfo }) => {
-//   const hiredDevInfo = {
-//     hired: true,
-//     ...devInfo
-//   }
-//   return hiredDevInfo
-// }
-
-const hireDev = ({ dev }) => {
-  const hiredDev = {
-    hired: true,
-    ...dev
-  }
-  return hiredDev
-}
-
-console.log(hireDev({ dev }))
+console.log(dev)
