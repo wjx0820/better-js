@@ -1,44 +1,26 @@
-document.getElementById("app").innerHTML = `
-<h1>Hello Parcel!</h1>
-<div>
-  Look
-  <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>
-  for more info about Parcel.
-</div>
-`
-// Immutable vs Mutable
+const cart = [10, 5, 15]
 
-// let name = "Scott"
-// name = name + " Tolinski"
-// console.log(name)
+const SHIPPING_COST = 10
 
-// const name = "Scott"
-// const fullName = name + " Tolinski"
-// console.log(fullName)
+const fakeAPICharge = total => true
+const fakeSendRecipt = total => true
 
-// Pure Functions
-// Always return the same thing with the same input
-const addTwo = x => x + 2
+const getSubTotal = cart => cart.reduce((tempTotal, item) => tempTotal + item)
+const getTotal = subTotal => subTotal + SHIPPING_COST
+const sendRecipt = ({ email, total }) =>
+  fakeSendRecipt({
+    email,
+    total
+  })
 
-console.log(addTwo(2))
-console.log(addTwo(2))
-console.log(addTwo(2))
-
-// NOT PURE
-let multi = 3 // External State
-const addThree = x => x + multi
-console.log(addThree(2))
-multi = 4
-console.log(addThree(2))
-multi = 6
-console.log(addThree(2))
-
-// funtion mutate outside thing
-let mult = 2
-const addFour = x => {
-  mult += 2
-  return x + mult
+const checkout = cart => {
+  const subTotal = getSubTotal(cart)
+  const total = getTotal(subTotal)
+  const orderSuccess = fakeAPICharge(total)
+  if (orderSuccess) {
+    sendRecipt({ email: "fakeemail@gmail.com", total })
+  }
+  return orderSuccess
 }
-console.log(addFour(2))
-console.log(addFour(2))
-console.log(addFour(2))
+
+checkout(cart)
