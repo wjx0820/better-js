@@ -6,25 +6,30 @@ document.getElementById("app").innerHTML = `
   for more info about Parcel.
 </div>
 `
-const newArray = ["hi", "scott", "1", "2"]
-const [a, b, ...c] = newArray
-console.log(c)
-
-const makePerson = (name, age, job) => {
+// parameters
+// order does not matter now
+const makePerson = ({ firstName, age, job, lastName }) => {
   return {
-    name,
+    name: firstName + " " + lastName,
     age,
     job
   }
 }
 
-const dev = makePerson("scott", 32, "web dev")
+// const tempName = {
+//   name: "Scott",
+//   lastName: "Tolinski",
+//   age: 32,
+//   job: "web dev"
+// }
 
-const { name, ...rest } = dev
+// arguments are things pass in to functions
+// more explicit and easy to read
+const dev = makePerson({
+  firstName: "Scott",
+  lastName: "Tolinski",
+  age: 32,
+  job: "web dev"
+})
 
-// React
-// this.props.names
-// const { names } = this.props
-// ...this.props
-
-console.log(name, rest)
+console.log(dev)
